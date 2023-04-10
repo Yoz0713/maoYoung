@@ -12,7 +12,32 @@
 <body>
     <video src="./video1.mp4" loop autoplay muted playsinline></video>
     <img src="./img1.webp">
+    <div class="speaker">
+        <img src="./audioOff.svg" class="off active">
+        <img src="./audioOn.svg" class="on">
+    </div>
 
 </body>
+<script>
+    window.onload = () => {
+        const speaker = document.querySelector(".speaker");
+        const video = document.querySelector("video")
+        const on = document.querySelector(".on")
+        const off = document.querySelector(".off")
+        let flag = false
+        speaker.addEventListener("click", (e) => {
+            flag = !flag;
+            if (flag) {
+                on.classList.add("active")
+                off.classList.remove("active")
+                video.muted = false
+            } else {
+                off.classList.add("active")
+                on.classList.remove("active")
+                video.muted = true
+            }
+        })
+    }
+</script>
 
 </html>

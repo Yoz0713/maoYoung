@@ -9,7 +9,29 @@ video {
     width: 100%;
 
 }
-img{
+
+img {
     display: block;
     width: 100%;
+}
+
+.speaker {
+    width: 1.5vw;
+    position: absolute;
+    right: 1.5vw;
+    bottom: 0vw;
+    cursor: pointer;
+
+}
+
+.speaker img {
+    display: none;
+    width: 100%;
+    pointer-events: none;
+}
+
+.speaker .active {
+    display: block;
+    width: 100%;
+
 }
