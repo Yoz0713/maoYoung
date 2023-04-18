@@ -35,3 +35,21 @@ img {
     width: 100%;
 
 }
+
+.computer {
+    display: block;
+}
+
+.phone {
+    display: none;
+}
+
+@media all and (max-width:786px) {
+    .computer {
+        display: none;
+    }
+
+    .phone {
+        display: block;
+    }
+}
