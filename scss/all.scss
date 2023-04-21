@@ -26,6 +26,25 @@
     }
 }
 
+@keyframes glow {
+    0% {
+        bottom: 0;
+    }
+
+    100% {
+        bottom: 100%;
+    }
+}
+
+@keyframes swipeSign {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(65vw);
+    }
+}
 
 body {
     background-color: #000;
@@ -100,7 +119,7 @@ body {
         }
     }
 
-    &::after {
+    .line {
         display: block;
         content: "";
         position: absolute;
@@ -287,7 +306,7 @@ body {
             }
 
             .paraBox {
-                &::after {
+                .line {
                     background-color: #ffffff86;
                 }
             }
@@ -343,6 +362,7 @@ body {
 .second-page {
     position: relative;
     width: 100%;
+    overflow: hidden;
 
     .bg {
         width: 100%;
@@ -350,6 +370,16 @@ body {
         img {
             width: 100%;
             height: auto;
+
+            @include tablet() {
+                height: 160vw;
+                width: 100%;
+            }
+
+            @include mobile() {
+                height: 220vw;
+                width: 100%;
+            }
         }
     }
 
@@ -362,7 +392,11 @@ body {
         margin: 0 auto;
 
         @include tablet() {
-            top: 25%;
+            top: 33%;
+        }
+
+        @include mobile() {
+            top: 33.5%;
         }
 
         .swiper-wrapper {
@@ -413,7 +447,13 @@ body {
         pointer-events: none;
 
         @include tablet() {
+            top: 63%;
+            scale: 2;
+        }
+
+        @include mobile() {
             top: 56.5%;
+            scale: 3;
         }
     }
 }
@@ -441,12 +481,14 @@ body {
             &:first-child {
                 margin-right: 6.5vw;
             }
+
         }
 
 
     }
 
     .imgBox {
+        position: relative;
         width: 92.5%;
         margin: 0 auto;
 
@@ -455,7 +497,7 @@ body {
 
         }
 
-        img {
+        >img {
             width: 100%;
             height: auto;
 
@@ -465,6 +507,46 @@ body {
             }
 
 
+        }
+
+        .glow-wrapper {
+            position: absolute;
+            left: 48.7vw;
+            bottom: 14vw;
+            width: 1.5vw;
+            height: 57%;
+
+            @include tablet() {
+                left: 118vw;
+                width: 4vw;
+                bottom: 33vw;
+            }
+
+            @include mobile() {
+                width: 6vw;
+                left: 117vw;
+            }
+        }
+
+        .hand {
+
+            position: absolute;
+            left: 85vw;
+            top: 0;
+            bottom: 0;
+            margin: auto 0;
+            width: 8vw;
+            height: 8vw;
+            animation-name: swipeSign;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            animation-iteration-count: infinite;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
         }
     }
 
@@ -506,7 +588,7 @@ body {
         }
 
         .paraBox {
-            &::after {
+            .line {
                 left: 0;
             }
         }
@@ -532,7 +614,7 @@ body {
                 position: relative;
                 width: pxConvertor(554);
                 height: pxConvertor(369.33);
-                transition: 0.8s;
+                transition: width 0.8s height 0.8s;
                 overflow: hidden;
 
                 @include tablet() {
@@ -647,7 +729,7 @@ body {
         }
 
         .paraBox {
-            &::after {
+            .line {
                 right: 0;
             }
         }
@@ -746,7 +828,7 @@ body {
         margin-bottom: 5vw;
         width: 95%;
 
-        & :nth-child(1) {
+        &> :nth-child(1) {
             position: relative;
             margin-right: 9vw;
 
@@ -754,24 +836,27 @@ body {
                 margin-right: 25vw;
             }
 
-            &::after {
-                display: block;
-                content: "";
-                position: absolute;
-                right: -4.5vw;
-                bottom: 0;
-                background-image: url(../img/svg/walk.svg);
-                width: pxConvertor(51.75);
-                height: pxConvertor(99.1);
-                background-size: 100%;
-                background-repeat: no-repeat;
+            &> :last-child {
+                &::after {
+                    display: block;
+                    content: "";
+                    position: absolute;
+                    right: -4.5vw;
+                    bottom: 0;
+                    background-image: url(../img/svg/walk.svg);
+                    width: pxConvertor(51.75);
+                    height: pxConvertor(99.1);
+                    background-size: 100%;
+                    background-repeat: no-repeat;
 
-                @include tablet() {
-                    width: pxConvertor2(51.75);
-                    height: pxConvertor2(99.1);
-                    right: -24vw;
+                    @include tablet() {
+                        width: pxConvertor2(51.75);
+                        height: pxConvertor2(99.1);
+                        right: -24vw;
+                    }
                 }
             }
+
         }
     }
 }
@@ -948,6 +1033,7 @@ body {
     width: 100%;
     padding: 6.5vw 10%;
     background-color: #978475;
+    overflow: hidden;
 
     @include tablet() {
         padding: 13vw 3.75% 10vw;
@@ -981,7 +1067,7 @@ body {
             }
 
             .paraBox {
-                &::after {
+                .line {
                     background-color: #fff;
                 }
 
@@ -1018,6 +1104,7 @@ body {
         .imgBox {
             position: relative;
             width: 100%;
+            overflow: hidden;
 
             .box {
                 display: flex;

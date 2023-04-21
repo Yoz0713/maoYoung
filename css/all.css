@@ -7,6 +7,22 @@
   list-style: none;
 }
 
+@keyframes glow {
+  0% {
+    bottom: 0;
+  }
+  100% {
+    bottom: 100%;
+  }
+}
+@keyframes swipeSign {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(65vw);
+  }
+}
 body {
   background-color: #000;
 }
@@ -78,7 +94,7 @@ body {
     display: none !important;
   }
 }
-.paraBox::after {
+.paraBox .line {
   display: block;
   content: "";
   position: absolute;
@@ -88,7 +104,7 @@ body {
   background-color: rgba(0, 0, 0, 0.4509803922);
 }
 @media (max-width: 821px) {
-  .paraBox::after {
+  .paraBox .line {
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -258,7 +274,7 @@ body {
 .second-half-page > div .titleBox p {
   color: #fff !important;
 }
-.second-half-page > div .titleBox .paraBox::after {
+.second-half-page > div .titleBox .paraBox .line {
   background-color: rgba(255, 255, 255, 0.5254901961);
 }
 @media (max-width: 821px) {
@@ -307,6 +323,7 @@ body {
 .second-page {
   position: relative;
   width: 100%;
+  overflow: hidden;
 }
 .second-page .bg {
   width: 100%;
@@ -314,6 +331,18 @@ body {
 .second-page .bg img {
   width: 100%;
   height: auto;
+}
+@media (max-width: 821px) {
+  .second-page .bg img {
+    height: 160vw;
+    width: 100%;
+  }
+}
+@media (max-width: 500px) {
+  .second-page .bg img {
+    height: 220vw;
+    width: 100%;
+  }
 }
 .second-page .swiper {
   position: absolute;
@@ -325,7 +354,12 @@ body {
 }
 @media (max-width: 821px) {
   .second-page .swiper {
-    top: 25%;
+    top: 33%;
+  }
+}
+@media (max-width: 500px) {
+  .second-page .swiper {
+    top: 33.5%;
   }
 }
 .second-page .swiper .swiper-wrapper {
@@ -370,7 +404,14 @@ body {
 }
 @media (max-width: 821px) {
   .second-page .island {
+    top: 63%;
+    scale: 2;
+  }
+}
+@media (max-width: 500px) {
+  .second-page .island {
     top: 56.5%;
+    scale: 3;
   }
 }
 
@@ -399,6 +440,7 @@ body {
   margin-right: 6.5vw;
 }
 .third-page .imgBox {
+  position: relative;
   width: 92.5%;
   margin: 0 auto;
 }
@@ -407,15 +449,53 @@ body {
     overflow-x: scroll;
   }
 }
-.third-page .imgBox img {
+.third-page .imgBox > img {
   width: 100%;
   height: auto;
 }
 @media (max-width: 821px) {
-  .third-page .imgBox img {
+  .third-page .imgBox > img {
     width: auto;
     height: 126.7057291667vw;
   }
+}
+.third-page .imgBox .glow-wrapper {
+  position: absolute;
+  left: 48.7vw;
+  bottom: 14vw;
+  width: 1.5vw;
+  height: 57%;
+}
+@media (max-width: 821px) {
+  .third-page .imgBox .glow-wrapper {
+    left: 118vw;
+    width: 4vw;
+    bottom: 33vw;
+  }
+}
+@media (max-width: 500px) {
+  .third-page .imgBox .glow-wrapper {
+    width: 6vw;
+    left: 117vw;
+  }
+}
+.third-page .imgBox .hand {
+  position: absolute;
+  left: 85vw;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  width: 8vw;
+  height: 8vw;
+  animation-name: swipeSign;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}
+.third-page .imgBox .hand img {
+  width: 100%;
+  height: auto;
 }
 .third-page .seagullBox {
   left: 20vw;
@@ -454,7 +534,7 @@ body {
     margin: 0;
   }
 }
-.forth-page .titleBox .paraBox::after {
+.forth-page .titleBox .paraBox .line {
   left: 0;
 }
 .forth-page .swiper {
@@ -477,7 +557,7 @@ body {
   position: relative;
   width: 28.8541666667vw;
   height: 19.2359375vw;
-  transition: 0.8s;
+  transition: width 0.8s height 0.8s;
   overflow: hidden;
 }
 @media (max-width: 821px) {
@@ -588,7 +668,7 @@ body {
     align-items: center;
   }
 }
-.fifth-page .titleBox .paraBox::after {
+.fifth-page .titleBox .paraBox .line {
   right: 0;
 }
 .fifth-page .bg {
@@ -673,16 +753,16 @@ body {
   margin-bottom: 5vw;
   width: 95%;
 }
-.fifth-page > :nth-child(3) :nth-child(1) {
+.fifth-page > :nth-child(3) > :nth-child(1) {
   position: relative;
   margin-right: 9vw;
 }
 @media (max-width: 821px) {
-  .fifth-page > :nth-child(3) :nth-child(1) {
+  .fifth-page > :nth-child(3) > :nth-child(1) {
     margin-right: 25vw;
   }
 }
-.fifth-page > :nth-child(3) :nth-child(1)::after {
+.fifth-page > :nth-child(3) > :nth-child(1) > :last-child::after {
   display: block;
   content: "";
   position: absolute;
@@ -695,7 +775,7 @@ body {
   background-repeat: no-repeat;
 }
 @media (max-width: 821px) {
-  .fifth-page > :nth-child(3) :nth-child(1)::after {
+  .fifth-page > :nth-child(3) > :nth-child(1) > :last-child::after {
     width: 6.73828125vw;
     height: 12.9036458333vw;
     right: -24vw;
@@ -870,6 +950,7 @@ body {
   width: 100%;
   padding: 6.5vw 10%;
   background-color: #978475;
+  overflow: hidden;
 }
 @media (max-width: 821px) {
   .seventh-page {
@@ -899,7 +980,7 @@ body {
 .seventh-page .top .titleBox p {
   color: #fff !important;
 }
-.seventh-page .top .titleBox .paraBox::after {
+.seventh-page .top .titleBox .paraBox .line {
   background-color: #fff;
 }
 @media (max-width: 821px) {
@@ -924,6 +1005,7 @@ body {
 .seventh-page .bottom .imgBox {
   position: relative;
   width: 100%;
+  overflow: hidden;
 }
 .seventh-page .bottom .imgBox .box {
   display: flex;
