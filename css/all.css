@@ -7,6 +7,10 @@
   list-style: none;
 }
 
+body {
+  background-color: #000;
+}
+
 .titleBox {
   position: relative;
 }
@@ -25,6 +29,8 @@
   letter-spacing: 0.1em;
   color: #736357;
   font-weight: 500;
+  font-family: "Lora", serif;
+  white-space: nowrap;
 }
 @media (max-width: 821px) {
   .titleBox .en {
@@ -146,6 +152,8 @@
 
 .first-page {
   position: relative;
+  background-color: #000;
+  overflow: hidden;
 }
 .first-page video {
   display: block;
@@ -153,7 +161,7 @@
 }
 @media (max-width: 500px) {
   .first-page video {
-    height: 200vw;
+    height: 190vw;
   }
 }
 .first-page img {
@@ -193,6 +201,8 @@
   position: relative;
   width: 100%;
   display: flex;
+  background-color: #000;
+  overflow: hidden;
 }
 @media (max-width: 821px) {
   .second-half-page {
@@ -737,6 +747,11 @@
   font-size: 0.8333333333vw;
   color: #fff;
   letter-spacing: 0.1em;
+}
+@media (max-width: 821px) {
+  .sixth-page .imgBox .box span {
+    font-size: 2.34375vw;
+  }
 }
 .sixth-page .imgBox .box .sun-thumb {
   left: 10px;

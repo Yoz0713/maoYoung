@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2&family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2&family=Lora:wght@400;500&family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.2.3/swiper-bundle.css">
     <link rel="stylesheet" href="./css/all.css">
@@ -24,6 +24,7 @@
             <img src="./audioOn.svg" class="on">
         </div>
     </div>
+
     <div class="second-half-page">
         <div class="left">
             <div class="imgBox">
@@ -343,14 +344,13 @@
             const swiper1 = new Swiper('.second-page .swiper', {
                 speed: 1000,
                 slidesPerView: 1,
-
+                enabled: false,
                 breakpoints: {
                     821: {  //当屏幕宽度大于等于768 
                         slidesPerView: 6,
                         freeMode: true,
-
+                        enabled: true,
                     },
-
                 }
             })
 
@@ -380,6 +380,126 @@
         thirdPageCenter()
 
         drag(".sixth-page .imgBox", ".sixth-page .imgBox .dragBar", ".sixth-page .imgBox > :nth-child(2)")
+
+        function firstPageAnimation() {
+            let gg = gsap.timeline()
+
+            gg.from(".first-page video", {
+                scale: 1.1,
+                duration: 2,
+                opacity: 0,
+            })
+        }
+        firstPageAnimation()
+
+        //windowSize = ture = 手機板
+        let windowSize;
+        if (window.innerWidth >= 821) {
+            windowSize = false
+        } else {
+            windowSize = true
+        }
+
+        function halfPageAnimation() {
+            let gg = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".second-half-page",
+                    start: `top 65%`,
+                    toggleActions: "play none none reverse"
+                }
+            })
+            gg.from(".second-half-page .right .imgBox img", {
+                opacity: 0,
+                x: 60,
+                duration: 1.2
+            }).from(".second-half-page .left", {
+                opacity: 0,
+                x: -60,
+                duration: 1.2
+            }, "<")
+
+            let gg2 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".second-half-page",
+                    start: `center ${windowSize ? "center" : "100%"}`,
+                    scrub: 1,
+                    pin: windowSize ? true : false,
+                    markers: true,
+                    end: `+=${window.innerHeight * 0.8}`,
+                }
+            })
+
+            gg2.from(".second-half-page .maoyoung > :nth-child(1)", {
+                opacity: 0,
+                x: 60,
+                duration: 1
+            }).from(".second-half-page .maoyoung > :nth-child(2)", {
+                opacity: 0,
+                x: -60,
+                duration: 1
+            }, "<").from(".second-half-page", {
+                duration: 1
+            })
+        }
+        halfPageAnimation()
+
+        function secondPageAnimation() {
+
+            if (windowSize) {
+                const slides = document.querySelectorAll(".second-page .swiper-slide")
+                let gg = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".second-page",
+                        start: `center center`,
+                        scrub: 1,
+                        pin: true,
+                        end: `+=${window.innerHeight * 2.5}`,
+                        markers: true,
+
+                    }
+                })
+
+                for (let i = 1; i < slides.length; i++) {
+                    gg.to('.second-page .swiper-wrapper', {
+                        x: `-${i}00%`,
+                        duration: 1
+                    });
+                }
+            } else {
+                let gg = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".second-page",
+                        start: `center 100%`,
+                        toggleActions: "play none none reverse"
+                    }
+                })
+                gg.from(".second-page .bg", {
+                    opacity: 0,
+                    y: 35,
+                    duaration: 1.4
+                }).from(".second-page .island", {
+                    opacity: 0,
+                    duaration: 1.2
+                }, "<+0.6").from(".second-page .swiper-wrapper > :nth-child(odd)", {
+                    opacity: 0,
+                    y: 30,
+                    duaration: 1.2,
+                    stagger: 0.15
+                }, "<+0.6").from(".second-page .swiper-wrapper > :nth-child(even)", {
+                    opacity: 0,
+                    y: 30,
+                    duaration: 1.2,
+                    stagger: 0.15
+                }, ">-0.2").from(".second-page .swiper-wrapper .swiper-slide p", {
+                    opacity: 0,
+                    y: 30,
+                    duaration: 0.6,
+                    stagger: 0.15
+                }, "<+0.5")
+            }
+
+        }
+        secondPageAnimation()
     }
 </script>
 

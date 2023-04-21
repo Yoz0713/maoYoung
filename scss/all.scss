@@ -26,6 +26,11 @@
     }
 }
 
+
+body {
+    background-color: #000;
+}
+
 //config
 .titleBox {
     position: relative;
@@ -45,6 +50,8 @@
         letter-spacing: 0.1em;
         color: #736357;
         font-weight: 500;
+        font-family: 'Lora', serif;
+        white-space: nowrap;
 
         @include tablet() {
             font-size: pxConvertor2(36);
@@ -170,13 +177,15 @@
 //page
 .first-page {
     position: relative;
+    background-color: #000;
+    overflow: hidden;
 
     video {
         display: block;
         width: 100%;
 
         @include mobile() {
-            height: 200vw;
+            height: 190vw;
         }
     }
 
@@ -223,6 +232,8 @@
     position: relative;
     width: 100%;
     display: flex;
+    background-color: #000;
+    overflow: hidden;
 
     @include tablet() {
         flex-direction: column;
@@ -808,6 +819,10 @@
                 font-size: pxConvertor(16);
                 color: #fff;
                 letter-spacing: 0.1em;
+
+                @include tablet() {
+                    font-size: pxConvertor2(18);
+                }
             }
 
             .sun-thumb {
