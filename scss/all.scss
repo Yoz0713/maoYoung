@@ -72,6 +72,10 @@ body {
         font-family: 'Lora', serif;
         white-space: nowrap;
 
+        span {
+            font-family: 'Lora', serif;
+        }
+
         @include tablet() {
             font-size: pxConvertor2(36);
 
@@ -84,6 +88,10 @@ body {
         font-family: 'Noto Serif TC', serif;
         letter-spacing: 0.08em;
         color: #232322;
+
+        span {
+            font-family: 'Noto Serif TC', serif;
+        }
 
         @include tablet() {
             font-size: pxConvertor2(42);
@@ -362,10 +370,18 @@ body {
 .second-page {
     position: relative;
     width: 100%;
-    overflow: hidden;
+    height: 220vw;
+    overflow: scroll;
 
     .bg {
         width: 100%;
+
+        @include mobile() {
+            position: sticky;
+            left: 0;
+            top: 0;
+            height: 500vw;
+        }
 
         img {
             width: 100%;
@@ -379,6 +395,31 @@ body {
             @include mobile() {
                 height: 220vw;
                 width: 100%;
+            }
+        }
+
+        #pixi-container {
+            position: absolute;
+            left: 0;
+            top: 1vw;
+            clip-path: polygon(0 100%, 100% 100%, 100% 65%, 0% 65%);
+            width: 100%;
+            height: 100%;
+
+            @include tablet() {
+                left: -0vw;
+                top: 5vw;
+                height: 160vw;
+                width: 100%;
+                clip-path: polygon(0 100%, 100% 100%, 100% 62%, 0% 62%);
+            }
+
+            @include mobile() {
+                left: 0vw;
+                top: 5vw;
+                height: 220vw;
+                width: 105%;
+                clip-path: polygon(0 100%, 100% 100%, 100% 55%, 0% 55%);
             }
         }
     }
@@ -426,7 +467,10 @@ body {
 
                     @include tablet() {
                         height: pxConvertor2(670);
+                    }
 
+                    @include mobile() {
+                        height: pxConvertor2(735);
                     }
                 }
 
@@ -596,6 +640,7 @@ body {
     }
 
     .swiper {
+        position: relative;
         width: 92.5%;
         height: 35vw;
         margin: 0 auto;
@@ -614,7 +659,7 @@ body {
                 position: relative;
                 width: pxConvertor(554);
                 height: pxConvertor(369.33);
-                transition: width 0.8s height 0.8s;
+                transition: width 0.8s, height 0.8s, margin 0.8s;
                 overflow: hidden;
 
                 @include tablet() {
@@ -700,6 +745,39 @@ body {
                 }
             }
         }
+
+        .prev,
+        .next {
+            position: absolute;
+            z-index: 20;
+            width: 2.2vw;
+            height: auto;
+            top: 0;
+            bottom: 0;
+            margin: auto 0;
+            cursor: pointer;
+
+            @include tablet() {
+                width: 11vw;
+                padding: 2vw;
+            }
+        }
+
+        .prev {
+            left: 24.5%;
+
+            @include tablet() {
+                left: 2%;
+            }
+        }
+
+        .next {
+            right: 28%;
+
+            @include tablet() {
+                right: 2%;
+            }
+        }
     }
 }
 
@@ -761,6 +839,8 @@ body {
         }
 
         .imgBox {
+            overflow: hidden;
+
             @include tablet() {
                 width: 49%;
                 height: pxConvertor2(233.84);
@@ -963,6 +1043,10 @@ body {
                 left: 46%;
             }
 
+            @include mobile() {
+                padding: 0 0.5vw;
+            }
+
             p {
                 user-select: none;
                 /* standard syntax */
@@ -979,6 +1063,10 @@ body {
 
                 @include tablet() {
                     font-size: 3.5vw;
+                }
+
+                @include mobile() {
+                    margin-top: 2vw;
                 }
             }
 
@@ -1170,6 +1258,62 @@ body {
     display: none;
 }
 
+.fancyBox {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.87);
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+
+    img {
+        width: 85%;
+        height: auto;
+    }
+
+    .close {
+        position: absolute;
+        right: 70px;
+        top: 50px;
+        width: 2vw;
+        height: 2vw;
+        transform: rotate(45deg);
+        cursor: pointer;
+
+        &::after,
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            background-color: #c2a357;
+
+        }
+
+        &::after {
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: 1px;
+            height: 100%;
+        }
+
+        &::before {
+            top: 0;
+            bottom: 0;
+            margin: auto 0;
+            width: 100%;
+            height: 1px;
+        }
+    }
+}
+
 @media all and (max-width:821px) {
     .computer {
         display: none;
@@ -1186,5 +1330,17 @@ body {
         object-position: center center;
     }
 
+    .fancyBox {
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            width: 8vw;
+            height: 8vw;
+            transform: rotate(45deg);
+            cursor: pointer;
+        }
+    }
 
 }
