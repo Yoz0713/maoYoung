@@ -18,13 +18,14 @@
         .demo2,
         .inner1,
         .inner2 {
-            display: none;
+            opacity: 0;
             position: absolute;
             left: 0;
             top: 0;
             width: 100%;
             overflow: hidden;
             background-color: #000;
+            transition: opacity 0.3s;
         }
 
         video {
@@ -39,7 +40,7 @@
         }
 
         .active {
-            display: block;
+            opacity: 1;
         }
 
         img {
@@ -76,15 +77,16 @@
 <script>
     let count = 0
     document.body.addEventListener("click", (e) => {
-        if (count == document.querySelectorAll("body > div").length - 1) {
+        const sliders = document.querySelectorAll("body > div")
+        if (count == sliders.length - 1) {
             count = 0
         } else {
             count = count + 1
         }
-        document.querySelectorAll("body > div").forEach((item, i) => {
+        sliders.forEach((item, i) => {
             item.classList.remove("active")
         })
-        document.querySelectorAll("body > div")[count].classList.add("active")
+        sliders[count].classList.add("active")
 
     })
 </script>
