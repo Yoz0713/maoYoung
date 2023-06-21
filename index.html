@@ -13,128 +13,80 @@
             box-sizing: border-box;
         }
 
-        .first-page {
-            position: relative;
-        }
 
-        video {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.7) grayscale(1) contrast(1.4);
-
-        }
-
-        .black {
-            pointer-events: none;
+        .demo1,
+        .demo2,
+        .inner1,
+        .inner2 {
+            display: none;
             position: absolute;
             left: 0;
             top: 0;
             width: 100%;
-            height: 100%;
-            background-image: radial-gradient(transparent 50%, #00000010 65%, #000000f1 100%);
-            background-size: 100% 100%;
-            z-index: 2;
+            overflow: hidden;
+            background-color: #000;
         }
 
-        img {
-            display: block;
-            width: 100%;
-        }
-
-        .speaker {
-            width: 1.5vw;
+        video {
             position: absolute;
-            right: 1.5vw;
-            bottom: 1.5vw;
-            cursor: pointer;
-            z-index: 3;
-
-        }
-
-        .speaker img {
-            display: none;
+            z-index: 1;
+            left: 0;
+            top: 0;
             width: 100%;
+            height: 51vw;
+            object-fit: cover;
             pointer-events: none;
         }
 
-        .speaker .active {
+        .active {
+            display: block;
+        }
+
+        img {
+            position: relative;
+            z-index: 5;
             display: block;
             width: 100%;
-
-        }
-
-        .computer {
-            display: block;
-        }
-
-        .phone {
-            display: none;
-        }
-
-        @media all and (max-width:786px) {
-            .computer {
-                display: none;
-            }
-
-            .phone {
-                display: block;
-            }
-
-            video {
-                width: 100%;
-                height: 200vw;
-                object-fit: cover;
-                object-position: center center;
-            }
-
-            .speaker {
-                width: 6.5vw;
-                right: 3vw;
-                bottom: 3.5vw;
-            }
+            height: auto;
+            pointer-events: none;
         }
     </style>
 </head>
 
 <body>
-    <div class="first-page">
-        <video src="./video1.mp4" loop autoplay muted playsinline></video>
-        <div class="speaker">
-            <img src="./audioOff.svg" class="off active">
-            <img src="./audioOn.svg" class="on">
-        </div>
-        <div class="black"></div>
+    <div class="demo1 active">
+        <video autoplay playsinline muted
+            src="./video/paint-in-water-flow-liquid-background-blue-gold-2022-12-14-17-20-14-utc (1).mp4"></video>
+        <img src="./img/jpg/img1.webp" style="margin-left: -3vw; width: 103vw;">
     </div>
+    <div class="demo2">
+        <video autoplay playsinline muted
+            src="https://video-previews.elements.envatousercontent.com/h264-video-previews/42ff92fb-0006-485a-b600-02783dd89de7/11767469.mp4"></video>
 
-    <img src="./img1.jpg" class="computer">
-
-
+        <img src="./img/jpg/img2.webp" style="margin-left: -0.5vw; width: 100.5vw;">
+    </div>
+    <div class="inner1">
+        <img src="./img/jpg/img3.jpg">
+    </div>
+    <div class="inner2">
+        <img src="./img/jpg/img4.jpg">
+    </div>
 </body>
+
 <script>
-    window.onload = () => {
-        const speaker = document.querySelector(".speaker");
-        const video = document.querySelector("video")
-        const on = document.querySelector(".on")
-        const off = document.querySelector(".off")
-        let flag = false
-        speaker.addEventListener("click", (e) => {
-            flag = !flag;
-            if (flag) {
-                on.classList.add("active")
-                off.classList.remove("active")
-                video.muted = false
-            } else {
-                off.classList.add("active")
-                on.classList.remove("active")
-                video.muted = true
-            }
+    let count = 0
+    document.body.addEventListener("click", (e) => {
+        if (count == document.querySelectorAll("body > div").length - 1) {
+            count = 0
+        } else {
+            count = count + 1
+        }
+        document.querySelectorAll("body > div").forEach((item, i) => {
+            item.classList.remove("active")
         })
-        video.addEventListener("play", (e) => {
-            console.log(e)
-        })
-    }
+        document.querySelectorAll("body > div")[count].classList.add("active")
+
+    })
 </script>
 
 </html>
