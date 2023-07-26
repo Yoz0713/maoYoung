@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/all.min.css">
+    <title>原成營造</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        img {
+            display: none !important;
+        }
+
+        .active {
+            display: block !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <a href="./index.html"></a>
+        <a href="./about.html"></a>
+        <a href="./award.html"></a>
+        <a href="./news.html"></a>
+        <a href="./project.html"></a>
+        <a href="./contact.html"></a>
+    </div>
+    <div class="about-menu">
+        <div class="box "></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+    <img src="./img/jpg/about1.jpg" class="active">
+    <img src="./img/jpg/about2.jpg">
+    <img src="./img/jpg/about3.jpg">
+    <img src="./img/jpg/about4.jpg">
+</body>
+
+
+<script>
+    const box = document.querySelectorAll(".about-menu .box")
+    const img = document.querySelectorAll("img")
+    box.forEach((item, i) => {
+
+        item.addEventListener("click", (item) => {
+            img.forEach((item) => {
+                item.classList.remove("active")
+            })
+            img[i].classList.add("active")
+        })
+    })
+</script>
+
+</html>
